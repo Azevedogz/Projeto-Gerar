@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"/>
+      <script src="script.js"></script>
+  </head>
+  <body>  
+    <div>
+        <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="cadastro.html">Cadastro</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="login.html">Logar-se</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="contato.html">Ajuda</a>
+        </li>
+    </div>
+    </ul>
+<br><br>
+    <div class="container-fluid cadastro">
+        <div class="container">
+            <h2>Cadastro</h2>
+        <form action="php/cadastro.php" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required><br><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required><br><br>
+            
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" maxlength="14" required>
+            <span id="cpfError" class="error"></span><br><br>
+            
+            <label for="senha">Cidade:</label>
+            <input type="password" id="cidade" name="cidade" required><br><br>
+        </form>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Servicos de carpinagem" value="1" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Servicos de carpinagem
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Cuidados com Animais de Estimação" value="2" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Cuidados com Animais de Estimação
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Serviços de Marcenaria" value="3" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Serviços de Marcenaria
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Serviços de Mudança" value="4" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Serviços de Mudança
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Lavanderia e Passadoria" value="5" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Lavanderia e Passadoria
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Serviços de Cozinha" value="6" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+              Serviços de Cozinha
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Reparos e Manutenção" value="7" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Reparos e Manutenção
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Serviços de Pintura" value="8" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Serviços de Pintura
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Organização de Ambientes" value="9" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Organização de Ambientes
+            </label>
+          </div>
+<br><br>
+          <button id="enviar" type="submit"><span>Cadastrar</span></button>
+
+    </div>
+  </body>
+</html>
