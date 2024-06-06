@@ -1,34 +1,76 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-</head>
-<body>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <h1 class="text-center mb-4">Cadastro</h1>
-        <form>
-          <div class="mb-3">
-            <label for="name" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="name" placeholder="Seu nome">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Seu email">
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="password" placeholder="Sua senha">
-          </div>
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+<?php
+require_once "config.php";
+
+$username = $password = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+    if(empty(trim($_POST["nome"]))){
+        $username_err = "Por favor, insira um nome de usuário.";
+    } else{
+        $sql = "SELECT id FROM prestadores_servico WHERE nome= ?";
+        
+        if($stmt = $mysqli->prepare($sql)){
+            $stmt->bind_param("s", $param_username);
+            
+            $param_username = trim($_POST["nome"]);
+            
+            if($stmt->execute()){
+                $stmt->store_result();
+                
+                if($stmt->num_rows == 1){
+                    $username_err = "Este nome de usuário já está em uso.";
+                } else{
+                    $username = trim($_POST["nome"]);
+                }
+            } else{
+                echo "Oops! Algo deu errado. Por favor, tente novamente mais tarde.";
+            }
+        }
+        
+        $stmt->close();
+    }
+    
+    if(empty(trim($_POST["senha"]))){
+        $password_err = "Por favor, insira uma senha.";     
+    } elseif(strlen(trim($_POST["senha"])) < 6){
+        $password_err = "A senha deve ter pelo menos 6 caracteres.";
+    } else{
+        $password = trim($_POST["senha"]);
+    }
+    
+    if(empty(trim($_POST["confirmar_senha"]))){
+        $confirm_password_err = "Por favor, confirme a senha.";     
+    } else{
+        $confirm_password = trim($_POST["confirmar_senha"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "As senhas não coincidem.";
+        }
+    }
+    
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+        
+        $sql = "INSERT INTO prestadores_servico (nome, senha) VALUES (?, ?)";
+         
+        if($stmt = $mysqli->prepare($sql)){
+            $stmt->bind_param("ss", $param_username, $param_password);
+            
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Hash da senha
+            
+            if($stmt->execute()){
+                $last_inserted_id = mysqli_insert_id($mysqli);
+                echo "<script>alert('Cadastro realizado com sucesso!');</script>";
+                header("location: perfil.php?id={$last_inserted_id}");
+            } else{
+                echo "Oops! Algo deu errado. Por favor, tente novamente mais tarde.";
+            }
+        }
+         
+        $stmt->close();
+    }
+    
+    $mysqli->close();
+}
+

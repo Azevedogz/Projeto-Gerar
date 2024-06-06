@@ -18,13 +18,13 @@ body {
 }
 
 .navbar .nav-link {
-  color: #fff;
+  color: black;
   font-weight: 500;
   margin: 0 1rem;
 }
 
 .navbar .nav-link:hover {
-  color: #ddd;
+  color: black;
 }
 
 h1 {
@@ -33,7 +33,11 @@ h1 {
 }
 
 .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   background-color: #fff;
+  height: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
@@ -43,7 +47,8 @@ h1 {
 
 .box img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  /* object-fit: cover; */
   border-radius: 8px;
   margin-bottom: 15px;
 }
@@ -57,3 +62,4 @@ h1 {
 .box:hover {
   transform: translateY(-5px);
 }
+

@@ -1,0 +1,60 @@
+body{
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.card {
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #007bff;
+}
+
+.card-text {
+  color: #6c757d;
+}
+
+h1 {
+  color: #343a40;
+}
+
+p.lead {
+  color: #495057;
+}
+
+.row{
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.card-body button {
+    width: 100%;
+    color: white;
+    background-color: #007bff;
+}
